@@ -129,6 +129,8 @@ export default function signin() {
 
         <DefMultipleChoices text='Choose your career goals:' options={careerGoalsOptions} limit={careerGoalsOptions.length}/>
 
+        <DefInput text='Enter link to your LinkedIn profile:'/>
+
         <DefButton text='Submit'/>
       </div>
     </div>
