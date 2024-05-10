@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface UserRegisterFormProps {
   text: string;
@@ -16,3 +16,5 @@ const DefInput: React.FC<UserRegisterFormProps> = ({ text }) => {
 };
 
 export default DefInput;
+
+
