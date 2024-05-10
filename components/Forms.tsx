@@ -1,16 +1,18 @@
 import React from 'react';
 
-
 interface UserRegisterFormProps {
-    text: string;
-  }
-  
-  const DefButton: React.FC<UserRegisterFormProps> = ({ text }) => {
-    return (
-      <div>
-        <button>{text}</button>
-      </div>
-    );
-  };
-  
-  export default DefButton;
+  text: string;
+}
+
+const DefInput: React.FC<UserRegisterFormProps> = ({ text }) => {
+  return (
+    <div>
+      <form>
+        <label htmlFor="fname">{text}:</label><br />
+        <input type="text" id="fname" name="fname" /><br />
+      </form>
+    </div>
+  );
+};
+
+export default DefInput;
