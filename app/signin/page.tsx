@@ -1,10 +1,13 @@
 import DefInput from '@/components/DefInput'
 import DefMultipleChoices from '@/components/DefMultipleChoices'
 import styles from './page.module.css'
-import React from 'react'
+import React, { useState } from 'react'
 import DefButton from '@/components/DefButton';
+import DefPasswordInput from '@/components/DefPasswordInput';
 
-export default function signin() {
+export default function SighIn() {
+
+
 
   const softSkillsOptions = ["communication", "teamwork", 
   "problem-solving","critical thinking","adaptability",
@@ -117,7 +120,7 @@ export default function signin() {
   return (
     <div className={styles.div}>
       <div style={{margin: '10px'}}>
-      Enter your data.
+      <h1>Enter your data:</h1>
         <DefInput text ="Name"/>
         <DefInput text="Surname"/>
         <DefInput text="Email"/>
@@ -131,7 +134,14 @@ export default function signin() {
 
         <DefInput text='Enter link to your LinkedIn profile:'/>
 
-        <DefButton text='Submit'/>
+        <DefPasswordInput text='Password:'/>
+
+        <DefPasswordInput text='Submit password:'/>
+
+        <div style={{ textAlign: 'center' ,marginLeft: 'auto', marginRight: 'auto' }}>
+          <DefButton text='Submit'/>
+        </div>
+        
       </div>
     </div>
   )

@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import styles from '../app/page.module.css'
 
 interface UserMultipleChoiceProps {
   text: string;
