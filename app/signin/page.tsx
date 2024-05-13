@@ -1,17 +1,25 @@
+'use client'
 import DefInput from '@/components/DefInput'
 import DefMultipleChoices from '@/components/DefMultipleChoices'
 import styles from './page.module.css'
 import React, { useState } from 'react'
-import DefButton from '@/components/DefButton';
 import DefPasswordInput from '@/components/DefPasswordInput';
 
 export default function SighIn() {
 
 
 
-  const softSkillsOptions = ["communication", "teamwork", 
-  "problem-solving","critical thinking","adaptability",
-  "time management","leadership","creativity","emotional intelligence"];
+  const softSkillsOptions = [
+    "communication",
+    "teamwork", 
+    "problem-solving",
+    "critical thinking",
+    "adaptability",
+    "time management",
+    "leadership",
+    "creativity",
+    "emotional intelligence"
+  ];
 
   const hardSkillsOptions = [
     "Programming (e.g., JavaScript, Python, Java)",
@@ -116,32 +124,81 @@ export default function SighIn() {
     "Develop expertise in emerging technologies",
     "Lead cross-functional teams on complex projects"
   ];
+  const [enteredName, setName] = useState('');
+  const [enteredSurname, setSurname] = useState('');
+  const [enteredEmail, setEmail] = useState('');
+  const [enteredFieldOfWork, setFieldOfWork] = useState('');
+  const [enteredPassword, setPassword] = useState('');
+  const [enteredSubmitPassword, setSubmitPassword] = useState('');
+  const [enteredLink, setLink] = useState('');
+  const [enteredSoft, setSoft] = useState<string[]>([]);
+  const [enteredHard, setHard] = useState<string[]>([]);
+  const [enteredCareerGoals, setCareerGoals] = useState<string[]>([]);
+  const [enteredLogin, setLogin] = useState('');
+
+  const handleName = (data: string) => {
+    setName(data);
+  };
+  const handleLogin = (data: string) => {
+    setLogin(data);
+  };
+  const handleSurname = (data: string) => {
+    setSurname(data);
+  };
+  const handleEmail= (data: string) => {
+    setEmail(data);
+  };
+  const handleFieldOfWork = (data: string) => {
+    setFieldOfWork(data);
+  };
+  const handlePassword = (data: string) => {
+    setPassword(data);
+  };
+  const handleSubmitPassword = (data: string) => {
+    setSubmitPassword(data);
+  };
+  const handleLink = (data: string) => {
+    setLink(data);
+  };
+  const handleCareerGoals = (data: string[]) => {
+    setCareerGoals(data);
+  };
+  const handleSoft = (data: string[]) => {
+    setSoft(data);
+  };
+  const handleHard = (data: string[]) => {
+    setHard(data);
+  };
 
   return (
     <div className={styles.div}>
       <div style={{margin: '10px'}}>
       <h1>Enter your data:</h1>
-        <DefInput text ="Name"/>
-        <DefInput text="Surname"/>
-        <DefInput text="Email"/>
-        <DefMultipleChoices text='Choose from 1 to 5 your soft-skills:' options={softSkillsOptions} limit ={5}/>
+      <DefInput text="Name" onData={handleName}/>
+        <DefInput text="Surname" onData={handleSurname}/>
+        <DefInput text="Email" onData={handleEmail}/>
+        <DefMultipleChoices text='Choose from 1 to 5 your soft-skills:' options={softSkillsOptions}
+         limit ={5} onMultipleChoice={handleSoft}/>
 
-        <DefMultipleChoices text='Choose from 1 to 50 your hard-skills:' options={hardSkillsOptions} limit ={50}/>
+        <DefMultipleChoices text='Choose from 1 to 50 your hard-skills:' options={hardSkillsOptions}
+         limit ={50} onMultipleChoice={handleHard}/>
 
-        <DefInput text='Field of work'/>
+        <DefInput text='Field of work'  onData={handleFieldOfWork}/>
 
-        <DefMultipleChoices text='Choose your career goals:' options={careerGoalsOptions} limit={careerGoalsOptions.length}/>
+        <DefMultipleChoices text='Choose your career goals' options={careerGoalsOptions}
+         limit={careerGoalsOptions.length} onMultipleChoice={handleCareerGoals}/>
 
-        <DefInput text='Enter link to your LinkedIn profile:'/>
+        <DefInput text='Enter link to your LinkedIn profile'  onData={handleLink}/>
 
-        <DefPasswordInput text='Password:'/>
+        <DefInput text="Login" onData={handleLogin}/>
 
-        <DefPasswordInput text='Submit password:'/>
+        <DefPasswordInput text='Password' onPasswordData={handlePassword}/>
+
+        <DefPasswordInput text='Submit password' onPasswordData={handleSubmitPassword}/>
 
         <div style={{ textAlign: 'center' ,marginLeft: 'auto', marginRight: 'auto' }}>
-          <DefButton text='Submit'/>
+          <button type='button'>Submit</button>
         </div>
-        
       </div>
     </div>
   )

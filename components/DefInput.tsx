@@ -1,15 +1,24 @@
+import React, { useState } from 'react';
+
 interface UserRegisterFormProps {
   text: string;
-  // value: string;
-  // onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onData: (data: string) => void;
 }
 
-const DefInput: React.FC<UserRegisterFormProps> = ({ text, value, onChange }) => {
+const DefInput: React.FC<UserRegisterFormProps> = ({ text, onData }) => {
+  const [name, setName] = useState('');
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+    onData(event.target.value);
+  };
+
   return (
     <div>
       <form>
+        {/* Rendering the input field */}
         <label htmlFor="fname">{text}:</label><br />
-        <input type="text" id="fname" name="fname" value={value} onChange={onChange} /><br />
+        <input type="text" id="fname" name="fname" value={name} onChange={handleInputChange} /><br />
       </form>
     </div>
   );
