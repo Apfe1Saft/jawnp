@@ -13,16 +13,13 @@ const MultipleChoices: React.FC<UserMultipleChoiceProps> = ({ text, options, lim
   const handleMCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const choice = event.target.value;
 
-    // If the checkbox is checked and the limit is not reached, add the option
     if (event.target.checked && selectedOptions.length < limit) {
       setSelectedOptions([...selectedOptions, choice]);
     } 
-    // If the checkbox is unchecked, remove the option
     else if (!event.target.checked) {
       setSelectedOptions(selectedOptions.filter(item => item !== choice));
     }
 
-    // Pass the selected options back to the parent component
     onMultipleChoice(selectedOptions);
   };
 
@@ -31,7 +28,6 @@ const MultipleChoices: React.FC<UserMultipleChoiceProps> = ({ text, options, lim
       <form>
         <label>{text}</label><br />
         <div style={{ margin: '10px' }}>
-          {/* Map over options to render checkboxes */}
           {options.map((option, index) => (
             <div key={index}>
               <input

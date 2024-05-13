@@ -135,40 +135,31 @@ export default function SighIn() {
   const [enteredHard, setHard] = useState<string[]>([]);
   const [enteredCareerGoals, setCareerGoals] = useState<string[]>([]);
   const [enteredLogin, setLogin] = useState('');
+  const [notification, setNotification] = useState('');
 
-  const handleName = (data: string) => {
-    setName(data);
+  const showMessage = (message) => {
+    setNotification(message);
+    setTimeout(() => {
+      setNotification('');
+    }, 3000);
   };
-  const handleLogin = (data: string) => {
-    setLogin(data);
+
+  const handleSubmit = () => {
+    showMessage('Form submitted successfully!');
   };
-  const handleSurname = (data: string) => {
-    setSurname(data);
-  };
-  const handleEmail= (data: string) => {
-    setEmail(data);
-  };
-  const handleFieldOfWork = (data: string) => {
-    setFieldOfWork(data);
-  };
-  const handlePassword = (data: string) => {
-    setPassword(data);
-  };
-  const handleSubmitPassword = (data: string) => {
-    setSubmitPassword(data);
-  };
-  const handleLink = (data: string) => {
-    setLink(data);
-  };
-  const handleCareerGoals = (data: string[]) => {
-    setCareerGoals(data);
-  };
-  const handleSoft = (data: string[]) => {
-    setSoft(data);
-  };
-  const handleHard = (data: string[]) => {
-    setHard(data);
-  };
+
+  const handleName = (data: string) => setName(data);
+  const handleSurname = (data: string) => setSurname(data);
+  const handleEmail = (data: string) => setEmail(data);
+  const handleFieldOfWork = (data: string) => setFieldOfWork(data);
+  const handlePassword = (data: string) => setPassword(data);
+  const handleSubmitPassword = (data: string) => setSubmitPassword(data);
+  const handleLink = (data: string) => setLink(data);
+  const handleSoft = (data: string[]) => setSoft(data);
+  const handleHard = (data: string[]) => setHard(data);
+  const handleCareerGoals = (data: string[]) => setCareerGoals(data);
+  const handleLogin = (data: string) => setLogin(data);
+  
 
   return (
     <div className={styles.div}>
@@ -199,6 +190,7 @@ export default function SighIn() {
         <div style={{ textAlign: 'center' ,marginLeft: 'auto', marginRight: 'auto' }}>
           <button type='button'>Submit</button>
         </div>
+        {notification && <Notification message={notification} />}
       </div>
     </div>
   )
