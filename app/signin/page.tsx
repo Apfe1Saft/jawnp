@@ -137,16 +137,6 @@ export default function SighIn() {
   const [enteredLogin, setLogin] = useState('');
   const [notification, setNotification] = useState('');
 
-  const showMessage = (message) => {
-    setNotification(message);
-    setTimeout(() => {
-      setNotification('');
-    }, 3000);
-  };
-
-  const handleSubmit = () => {
-    showMessage('Form submitted successfully!');
-  };
 
   const handleName = (data: string) => setName(data);
   const handleSurname = (data: string) => setSurname(data);
@@ -159,58 +149,52 @@ export default function SighIn() {
   const handleHard = (data: string[]) => setHard(data);
   const handleCareerGoals = (data: string[]) => setCareerGoals(data);
   const handleLogin = (data: string) => setLogin(data);
-  
-  function clickSubmit(){
-    if (
-      enteredName === '' &&
-      enteredSurname === '' &&
-      enteredEmail === '' &&
-      enteredFieldOfWork === '' &&
-      enteredPassword === '' &&
-      enteredSubmitPassword === '' &&
-      enteredLink === '' &&
-      enteredSoft.length === 0 &&
-      enteredHard.length === 0 &&
-      enteredCareerGoals.length === 0 &&
-      enteredLogin === '' &&
-      notification === ''
-  ) {
-      
-  }
-  }
 
-  document.getElementById('submitBtn').addEventListener('click', clickSubmit);
+  const handleSubmit = () => {
+    console.log('click')
+    if (
+        enteredName === '' ||
+        enteredSurname === '' ||
+        enteredEmail === '' ||
+        enteredFieldOfWork === '' ||
+        enteredPassword === '' ||
+        enteredSubmitPassword === '' ||
+        enteredLink === '' ||
+        enteredSoft.length === 0 ||
+        enteredHard.length === 0 ||
+        enteredCareerGoals.length === 0 ||
+        enteredLogin === '' ||
+        notification === ''
+    ) {
+      console.log('empty data')
+        
+    } else{
+      console.log('great!')
+    }
+};
 
 
   return (
     <div className={styles.div}>
       <div style={{margin: '10px'}}>
       <h1>Enter your data:</h1>
-      <DefInput text="Name" onData={handleName}/>
-        <DefInput text="Surname" onData={handleSurname}/>
-        <DefInput text="Email" onData={handleEmail}/>
-        <DefMultipleChoices text='Choose from 1 to 5 your soft-skills:' options={softSkillsOptions}
-         limit ={5} onMultipleChoice={handleSoft}/>
-
-        <DefMultipleChoices text='Choose from 1 to 50 your hard-skills:' options={hardSkillsOptions}
-         limit ={50} onMultipleChoice={handleHard}/>
-
-        <DefInput text='Field of work'  onData={handleFieldOfWork}/>
-
-        <DefMultipleChoices text='Choose your career goals' options={careerGoalsOptions}
-         limit={careerGoalsOptions.length} onMultipleChoice={handleCareerGoals}/>
-
-        <DefInput text='Enter link to your LinkedIn profile'  onData={handleLink}/>
-
-        <DefInput text="Login" onData={handleLogin}/>
-
-        <DefPasswordInput text='Password' onPasswordData={handlePassword}/>
-
-        <DefPasswordInput text='Submit password' onPasswordData={handleSubmitPassword}/>
-
-        <div style={{ textAlign: 'center' ,marginLeft: 'auto', marginRight: 'auto' }}>
-          <button type='button' id='submitBtn'>Submit</button>
-        </div>
+      <div id='name'><DefInput text="Name" onData={handleName}/></div>
+      <div id='surname'><DefInput text="Surname" onData={handleSurname}/></div>
+      <div id='email'><DefInput text="Email" onData={handleEmail}/></div>
+      <div id='sskills'><DefMultipleChoices text='Choose from 1 to 5 your soft-skills:' options={softSkillsOptions}
+        limit ={5} onMultipleChoice={handleSoft}/></div>
+      <div id='hskills'><DefMultipleChoices text='Choose from 1 to 50 your hard-skills:' options={hardSkillsOptions}
+        limit ={50} onMultipleChoice={handleHard}/></div>
+      <div id='fow'><DefInput text='Field of work'  onData={handleFieldOfWork}/></div>
+      <div id='cgoals'><DefMultipleChoices text='Choose your career goals' options={careerGoalsOptions}
+         limit={careerGoalsOptions.length} onMultipleChoice={handleCareerGoals}/></div>
+      <div id='llink'><DefInput text='Enter link to your LinkedIn profile'  onData={handleLink}/></div>
+      <div id='login'><DefInput text="Login" onData={handleLogin}/></div>
+      <div id='password'><DefPasswordInput text='Password' onPasswordData={handlePassword}/></div>
+      <div id='spassword'><DefPasswordInput text='Submit password' onPasswordData={handleSubmitPassword}/></div>
+      <div id='sbutton' style={{ textAlign: 'center' ,marginLeft: 'auto', marginRight: 'auto' }}>
+        <button type='button' id='submitBtn' onClick={handleSubmit}>Submit</button>
+      </div>
       </div>
     </div>
   )
