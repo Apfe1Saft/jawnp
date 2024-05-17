@@ -167,9 +167,9 @@ export default function SighIn() {
         notification === ''
     ) {
       console.log('empty data')
-        
     } else{
       console.log('great!')
+      window.location.href = '/main/page';
     }
 };
 
