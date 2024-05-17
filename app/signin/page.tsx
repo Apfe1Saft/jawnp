@@ -160,6 +160,27 @@ export default function SighIn() {
   const handleCareerGoals = (data: string[]) => setCareerGoals(data);
   const handleLogin = (data: string) => setLogin(data);
   
+  function clickSubmit(){
+    if (
+      enteredName === '' &&
+      enteredSurname === '' &&
+      enteredEmail === '' &&
+      enteredFieldOfWork === '' &&
+      enteredPassword === '' &&
+      enteredSubmitPassword === '' &&
+      enteredLink === '' &&
+      enteredSoft.length === 0 &&
+      enteredHard.length === 0 &&
+      enteredCareerGoals.length === 0 &&
+      enteredLogin === '' &&
+      notification === ''
+  ) {
+      
+  }
+  }
+
+  document.getElementById('submitBtn').addEventListener('click', clickSubmit);
+
 
   return (
     <div className={styles.div}>
@@ -188,9 +209,8 @@ export default function SighIn() {
         <DefPasswordInput text='Submit password' onPasswordData={handleSubmitPassword}/>
 
         <div style={{ textAlign: 'center' ,marginLeft: 'auto', marginRight: 'auto' }}>
-          <button type='button'>Submit</button>
+          <button type='button' id='submitBtn'>Submit</button>
         </div>
-        {notification && <Notification message={notification} />}
       </div>
     </div>
   )
