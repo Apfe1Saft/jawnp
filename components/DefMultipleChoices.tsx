@@ -12,15 +12,19 @@ const MultipleChoices: React.FC<UserMultipleChoiceProps> = ({ text, options, lim
 
   const handleMCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const choice = event.target.value;
+    let updatedOptions:string[] = [];
 
-    if (event.target.checked && selectedOptions.length < limit) {
-      setSelectedOptions([...selectedOptions, choice]);
-    } 
-    else if (!event.target.checked) {
-      setSelectedOptions(selectedOptions.filter(item => item !== choice));
+    if (event.target.checked) {
+      if (selectedOptions.length < limit) {
+        updatedOptions = [...selectedOptions, choice];
+        setSelectedOptions(updatedOptions);
+      }
+    } else {
+      updatedOptions = selectedOptions.filter(item => item !== choice);
+      setSelectedOptions(updatedOptions);
     }
 
-    onMultipleChoice(selectedOptions);
+    onMultipleChoice(updatedOptions);
   };
 
   return (

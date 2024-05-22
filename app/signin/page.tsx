@@ -4,6 +4,7 @@ import DefMultipleChoices from '@/components/DefMultipleChoices'
 import styles from './page.module.css'
 import React, { useState } from 'react'
 import DefPasswordInput from '@/components/DefPasswordInput';
+import { addUser } from '@/services/userService';
 
 export default function SighIn() {
 
@@ -150,48 +151,79 @@ export default function SighIn() {
   const handleCareerGoals = (data: string[]) => setCareerGoals(data);
   const handleLogin = (data: string) => setLogin(data);
 
-  const handleSubmit = () => {
-    console.log('click')
+  const handleSubmit = async () => {
     if (
-        enteredName === '' ||
-        enteredSurname === '' ||
-        enteredEmail === '' ||
-        enteredFieldOfWork === '' ||
-        enteredPassword === '' ||
-        enteredSubmitPassword === '' ||
-        enteredLink === '' ||
-        enteredSoft.length === 0 ||
-        enteredHard.length === 0 ||
-        enteredCareerGoals.length === 0 ||
-        enteredLogin === '' ||
-        notification === ''
+      false
     ) {
-      console.log('empty data')
-    } else{
-      console.log('great!')
-      window.location.href = '/main/page';
+      console.log('Please fill out all fields.');
+    } else if (enteredPassword !== enteredSubmitPassword) {
+      console.log('Passwords do not match.');
+    } else {
+      try {
+        console.log(enteredSoft)
+        const response = await addUser({
+          name: enteredName,
+          surname: enteredSurname,
+          email: enteredEmail,
+          fieldOfWork: enteredFieldOfWork,
+          password: enteredPassword,
+          login: enteredLogin,
+          linkedInLink: enteredLink,
+          softSkills: enteredSoft,
+          hardSkills: enteredHard,
+          careerGoals: enteredCareerGoals
+        });
+        console.log('User added successfully:', response);
+        console.log('User added successfully.');
+        window.location.href = '/main/page';
+      } catch (error) {
+        console.error('Error adding user:', error);
+        console.log('Error adding user. Please try again.');
+      }
     }
-};
+  };
 
 
   return (
     <div className={styles.div}>
       <div style={{margin: '10px'}}>
       <h1>Enter your data:</h1>
-      <div id='name'><DefInput text="Name" onData={handleName}/></div>
-      <div id='surname'><DefInput text="Surname" onData={handleSurname}/></div>
-      <div id='email'><DefInput text="Email" onData={handleEmail}/></div>
-      <div id='sskills'><DefMultipleChoices text='Choose from 1 to 5 your soft-skills:' options={softSkillsOptions}
-        limit ={5} onMultipleChoice={handleSoft}/></div>
-      <div id='hskills'><DefMultipleChoices text='Choose from 1 to 50 your hard-skills:' options={hardSkillsOptions}
-        limit ={50} onMultipleChoice={handleHard}/></div>
-      <div id='fow'><DefInput text='Field of work'  onData={handleFieldOfWork}/></div>
-      <div id='cgoals'><DefMultipleChoices text='Choose your career goals' options={careerGoalsOptions}
-         limit={careerGoalsOptions.length} onMultipleChoice={handleCareerGoals}/></div>
-      <div id='llink'><DefInput text='Enter link to your LinkedIn profile'  onData={handleLink}/></div>
-      <div id='login'><DefInput text="Login" onData={handleLogin}/></div>
-      <div id='password'><DefPasswordInput text='Password' onPasswordData={handlePassword}/></div>
-      <div id='spassword'><DefPasswordInput text='Submit password' onPasswordData={handleSubmitPassword}/></div>
+      <div id='name'>
+        <DefInput text="Name" onData={handleName}/>
+      </div>
+      <div id='surname'>
+        <DefInput text="Surname" onData={handleSurname}/>
+      </div>
+      <div id='email'>
+        <DefInput text="Email" onData={handleEmail}/>
+      </div>
+      <div id='sskills'>
+        <DefMultipleChoices text='Choose from 1 to 5 your soft-skills:' options={softSkillsOptions}
+        limit ={5} onMultipleChoice={handleSoft}/>
+      </div>
+      <div id='hskills'>
+        <DefMultipleChoices text='Choose from 1 to 50 your hard-skills:' options={hardSkillsOptions}
+        limit ={50} onMultipleChoice={handleHard}/>
+      </div>
+      <div id='fow'>
+        <DefInput text='Field of work'  onData={handleFieldOfWork}/>
+      </div>
+      <div id='cgoals'>
+        <DefMultipleChoices text='Choose your career goals' options={careerGoalsOptions}
+         limit={careerGoalsOptions.length} onMultipleChoice={handleCareerGoals}/>
+      </div>
+      <div id='llink'>
+        <DefInput text='Enter link to your LinkedIn profile'  onData={handleLink}/>
+      </div>
+      <div id='login'>
+        <DefInput text="Login" onData={handleLogin}/>
+      </div>
+      <div id='password'>
+        <DefPasswordInput text='Password' onPasswordData={handlePassword}/>
+      </div>
+      <div id='spassword'>
+        <DefPasswordInput text='Submit password' onPasswordData={handleSubmitPassword}/>
+      </div>
       <div id='sbutton' style={{ textAlign: 'center' ,marginLeft: 'auto', marginRight: 'auto' }}>
         <button type='button' id='submitBtn' onClick={handleSubmit}>Submit</button>
       </div>

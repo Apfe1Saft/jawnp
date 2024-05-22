@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import './globals.css'
+import DisplayUser from '@/components/DisplayUser'
 
 export default function RootLayout({
   children,
@@ -19,6 +20,7 @@ export default function RootLayout({
             <h1>
               <Link href='/main'>Main </Link>
               <Link href='/reports'>Reports </Link>
+              <DisplayUser/>
             </h1>
           </div>
         </nav>
