@@ -29,7 +29,6 @@ const MultipleChoices: React.FC<UserMultipleChoiceProps> = ({ text, options, lim
 
   return (
     <div>
-      <form>
         <label>{text}</label><br />
         <div style={{ margin: '10px' }}>
           {options.map((option, index) => (
@@ -45,7 +44,6 @@ const MultipleChoices: React.FC<UserMultipleChoiceProps> = ({ text, options, lim
             </div>
           ))}
         </div>
-      </form>
     </div>
   );
 };

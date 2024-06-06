@@ -105,3 +105,55 @@ a {
     color-scheme: dark;
   }
 }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+  background-color: cadetblue;
+  color: white;
+}
+
+header a {
+  margin: 0 10px; 
+}
+main{
+  text-align: center;
+}
+
+
+
+.sign-in-form{
+  border: 1px solid black;
+  width: 50%;
+  margin: 10px auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.form-group{
+  text-align: left;
+  height: 20px;
+  width: auto;
+  margin-bottom: 5px;
+}
+
+.multi-form{
+  border-bottom: solid 1px black;
+  text-align: left;
+}
+
+.profile-block{
+  text-align: left;
+  color: yellow;
+}
+.add-report-button{
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 10px;
+}
+.add-report-button:hover{
+  background-color: yellow;
+}

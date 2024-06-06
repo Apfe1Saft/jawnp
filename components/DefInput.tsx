@@ -15,14 +15,10 @@ const DefInput: React.FC<UserRegisterFormProps> = ({ text, onData }) => {
 
   return (
     <div>
-      <form>
         <label htmlFor="fname">{text}:</label><br />
         <input type="text" id="fname" name="fname" value={name} onChange={handleInputChange} /><br />
-      </form>
     </div>
   );
 };
 
 export default DefInput;
-
-
