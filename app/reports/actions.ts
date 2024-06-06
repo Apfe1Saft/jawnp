@@ -31,6 +31,8 @@ export async function updateReport(data: FormData) {
 
     // Convert age to integer
     const ageInt = parseInt(age, 10);
+    console.log("HOW:" + age)
+    console.log(ageInt)
 
     if (isNaN(ageInt)) {
         throw new Error("Invalid age value provided.");

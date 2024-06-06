@@ -157,3 +157,28 @@ main{
 .add-report-button:hover{
   background-color: yellow;
 }
+
+.report-page{
+  text-align: left;
+  padding-left: 10px;
+}
+
+.report-block{
+  min-height: 40px;
+  
+  text-align: left;
+  padding-left: 10px;
+
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.button-1 {
+  background-color: yellow; 
+  border: 1px solid black;
+  border-radius: 10px;
+  min-height: 30px;
+  min-width: 80px;
+  display: inline-block; 
+  text-align: center; 
+  line-height: 30px;
+}

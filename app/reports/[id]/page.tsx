@@ -34,15 +34,18 @@ export default async function Report({params:{id}}:Props){
     const report = await getReportById(id)
     return (
         <>
-        <h1>{report?.title}</h1>
+        <div className="report-page">
+            <h1>{report?.title}</h1>
         Report ID: {report?.id}
-        <p>{report?.body}</p>
+        <div className="report-block">
+            <p>{report?.body}</p>
+        </div>
 
         <form action={removeReport.bind(null, id)}>
-            <input type="submit" value="delete report" />
+            <input type="submit" className="button-1" value="delete report" />
         </form>
-
-        <Link href = {'/reports/${id}/edit'}>Edit</Link>
+        </div>
+        
         </>
         
 

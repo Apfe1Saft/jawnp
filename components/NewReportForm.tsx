@@ -15,8 +15,19 @@ export default async function NewReportForm() {
                         <input type="integer" placeholder="Your age" required name="age" />
                     </div>
                     <div>
-                        <input type="text" placeholder="Your gender" required name="gender" />
-                    </div>
+                        <label>
+                            <input type="radio" name="gender" value="male" required />
+                            Male
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="female" required />
+                            Female
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="other" required />
+                            Other
+                        </label>
+                        </div>
                     <div>
                         <textarea name="body" placeholder="Content" required className="edit-text" />
                     </div>
