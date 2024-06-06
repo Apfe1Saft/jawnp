@@ -17,11 +17,11 @@ export default async function Report(){
   <>
   <h1>Report page</h1>
   <ul className="reports">
-    {reports.map((report:any)=>(
-      <li key={report.id} className="report-item">
-        <Link href={'/reports/${report.id}'}>{report.title}</Link>
-      </li>
-    ))}
+  {reports.map((report) => (
+  <li key={report.id} className="report-item">
+    <Link href={`/reports/${report.id}`}>{report.title}</Link>
+  </li>
+))}
     
   </ul>
   <div className="add-report-block">

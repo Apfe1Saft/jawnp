@@ -35,7 +35,7 @@ export default async function Report({params:{id}}:Props){
     return (
         <>
         <h1>{report?.title}</h1>
-        <h2>{report?.id}</h2>
+        Report ID: {report?.id}
         <p>{report?.body}</p>
 
         <form action={removeReport.bind(null, id)}>
