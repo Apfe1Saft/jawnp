@@ -1,9 +1,10 @@
-import type { NextAuthOptions } from "next-auth";
+import { NextAuthOptions } from 'next-auth/index'
 import GitHubProvider from'next-auth/providers/github'
 import CredentialsProvider from'next-auth/providers/credentials'
 import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
+import { randomBytes, randomUUID } from "crypto";
 
-const prisma = new PrismaClient()
 
 export const options: NextAuthOptions ={
     
@@ -44,5 +45,23 @@ export const options: NextAuthOptions ={
                 return null;
             }
         })
-    ]
+    ],
+    callbacks: {
+        async jwt({ token, user }:any) {
+            if (user) {
+                token.id = user.id;
+                token.name = user.name;
+                token.email = user.email;
+            }
+            return token;
+        },
+        async session({ session, token, }:any) {
+            if (session.user) {
+                session.user.id = token.id as string;
+                session.user.name = token.name as string;
+                session.user.email = token.email as string;
+            }
+            return session;
+        },
+    }
 }

@@ -1,13 +1,35 @@
+"use client"
+import { authConfig } from "@/app/configs/auth";
 import { createReport } from "@/app/reports/actions";
-import { getServerSession } from 'next-auth/next';
+import { error } from "console";
+import { useSession } from "next-auth/react"
+import router from "next/router";
 
 export default async function NewReportForm() {
-    const session = await getServerSession();
+    const { data: session, status } = useSession()
+
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+
+        
+        if (session?.user) {
+            try {
+                await createReport(formData, session.user.id);
+                router.push("/reports/");
+            } catch (error) {
+                Error("Failed to create report. Please try again.");
+            }
+        } else {
+            Error("You must be logged in to create a report.");
+        }
+    };
 
     return (
         <>
             {session ? (
-                <form className="report-form" action={createReport}>
+                <form className="report-form" >
                     <div>
                         <input type="text" placeholder="Title" required name="title" />
                     </div>
@@ -40,6 +62,7 @@ export default async function NewReportForm() {
                     You have to be logged in to add new reports!
                 </div>
             )}
+            <pre>{session ? JSON.stringify(session, null, 2) : 'Loading session...'}</pre>
         </>
     );
 }

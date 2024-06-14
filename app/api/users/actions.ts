@@ -60,3 +60,11 @@ export async function isUserByLoginExist(login:string) {
     console.log("User Not Found")
     return false
 }
+
+export async function getUserAccountTypeByEmail(email:string) {
+        return await prisma.user.findUnique({
+            where:{
+                email,
+            }
+        })
+}
