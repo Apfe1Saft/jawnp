@@ -223,3 +223,13 @@ main{
 .report-form input[type="radio"] {
   margin-right: 5px;
 }
+
+.header-button:hover {
+  text-decoration: underline;
+}
+
+.header-button:active {
+  text-decoration: underline;
+  color: yellow;
+  transform: scale(0.95);
+}

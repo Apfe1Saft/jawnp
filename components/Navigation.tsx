@@ -22,22 +22,28 @@ const Navigation =({navLinks}:Props) =>{
             const isActive = pathname ===link.href;
 
             return (
-                <Link
-                key = {link.label}
-                href = {link.href}
-                className={isActive ? 'active': ""}>
-                    {link.label}
-                </Link>
+                <div className="header-button">
+                    <Link
+                    key = {link.label}
+                    href = {link.href}
+                    className={isActive ? 'active': ""}>
+                        {link.label}
+                    </Link>
+                </div>
             )
         })
     }
     
     {session?.data ?
-        <Link href="#" onClick={
+        <div className="header-button">
+            <Link href="#" onClick={
             ()=>signOut({callbackUrl:"/"})
             }>
-                Sign Out</Link>:
-        <Link href="/api/auth/signin">Login</Link>
+                Sign Out</Link>
+        </div>:
+        <div className="header-button">
+            <Link href="/api/auth/signin">Login</Link>
+        </div>
 
     }
     </>

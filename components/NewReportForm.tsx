@@ -17,7 +17,7 @@ export default async function NewReportForm() {
         if (session?.user) {
             try {
                 await createReport(formData, session.user.id);
-                router.push("/reports/");
+                router.push("/reports");
             } catch (error) {
                 Error("Failed to create report. Please try again.");
             }
