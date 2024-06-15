@@ -29,7 +29,7 @@ export default async function NewReportForm() {
     return (
         <>
             {session ? (
-                <form className="report-form" >
+                <form className="report-form">
                     <div>
                         <input type="text" placeholder="Title" required name="title" />
                     </div>
@@ -49,7 +49,7 @@ export default async function NewReportForm() {
                             <input type="radio" name="gender" value="other" required />
                             Other
                         </label>
-                        </div>
+                    </div>
                     <div>
                         <textarea name="body" placeholder="Content" required className="edit-text" />
                     </div>

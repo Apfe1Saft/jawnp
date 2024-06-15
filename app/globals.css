@@ -182,3 +182,44 @@ main{
   text-align: center; 
   line-height: 30px;
 }
+
+.report-form {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.report-form div {
+  margin-bottom: 15px;
+}
+
+.report-form input[type="text"],
+.report-form input[type="integer"],
+.report-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.report-form label {
+  margin-right: 10px;
+}
+
+.report-form input[type="submit"] {
+  background-color: cadetblue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.report-form input[type="radio"] {
+  margin-right: 5px;
+}
