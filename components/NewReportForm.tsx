@@ -1,6 +1,6 @@
 "use client"
 import { authConfig } from "@/app/configs/auth";
-import { createReport } from "@/app/reports/actions";
+import { createReport } from "@/app/api/reports/actions";
 import { error } from "console";
 import { useSession } from "next-auth/react"
 import router from "next/router";
@@ -29,7 +29,7 @@ export default async function NewReportForm() {
     return (
         <>
             {session ? (
-                <form className="report-form">
+                <form className="report-form" onSubmit={handleSubmit}>
                     <div>
                         <input type="text" placeholder="Title" required name="title" />
                     </div>

@@ -1,5 +1,5 @@
 import { getAllReports, getReportById } from "@/services/reports";
-import { removeReport } from "../actions"
+import { removeReport } from "../../api/reports/actions"
 import { Metadata } from "next";
 import Link from "next/link";
 
