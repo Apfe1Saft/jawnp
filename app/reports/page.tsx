@@ -24,9 +24,11 @@ export default async function Report(){
 ))}
     
   </ul>
-  <div className="add-report-block">
+
+  
+  <div className="add-report-block ">
     <Link href="/reports/new" className="add-new">
-      <button className="add-report-button">Add new report</button>
+      <button className="button-main">Add new report</button>
       </Link>
   </div>
   

@@ -68,3 +68,26 @@ export async function getUserAccountTypeByEmail(email:string) {
             }
         })
 }
+
+export async function getUserById(id: string) {
+    const user = await prisma.user.findUnique({
+        where: {
+            id,
+        },
+        select: {
+            id: true,
+            name: true,
+            surname: true,
+            email: true,
+            fieldOfWork: false,
+            linkedInLink: false,
+            githubLink: false,
+            login: true,
+            softSkills: false,
+            hardSkills: false,
+            careerGoals: false
+        }
+    });
+
+    return user;
+}
