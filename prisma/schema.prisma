@@ -16,6 +16,7 @@ model Report {
   gender  String
   userId  String
   user    User     @relation(fields: [userId], references: [id])
+  likes   Like[]   @relation("ReportLikes")
 }
 
 model User {
@@ -33,4 +34,15 @@ model User {
   careerGoals  String
   accountType  String   @default("Guest")
   reports      Report[]
+  likes        Like[]   @relation("UserLikes")
+}
+
+model Like {
+  id       String  @id @default(cuid())
+  userId   String
+  user     User    @relation(fields: [userId], references: [id], name: "UserLikes")
+  reportId String
+  report   Report  @relation(fields: [reportId], references: [id], name: "ReportLikes")
+
+  @@unique([userId, reportId])
 }
