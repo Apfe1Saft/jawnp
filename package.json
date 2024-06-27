@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma": "prisma",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:generate": "prisma generate"
   },
   "dependencies": {
     "@next/font": "14.2.3",
@@ -26,7 +29,11 @@
     "react-router-dom": "^6.23.1",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",
+    "next-auth": "4.24.7",
     "typescript": "5.4.5",
-    "next-auth": "4.24.7"
+    "@prisma/client": "^4.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^4.0.0"
   }
 }
