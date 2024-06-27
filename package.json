@@ -26,6 +26,7 @@
     "react-router-dom": "^6.23.1",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",
-    "typescript": "5.4.5"
+    "typescript": "5.4.5",
+    "next-auth": "4.24.7"
   }
 }

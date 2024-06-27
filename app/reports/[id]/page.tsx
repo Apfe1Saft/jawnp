@@ -1,10 +1,11 @@
 import { getAllReports, getReportById } from "@/services/reports";
-import { removeReport } from "../../api/reports/actions"
-import { getLikesByReportId } from "../../api/likes/actions"
-import { getUserById } from "../../api/users/actions"
+import { removeReport } from "../../api/reports/actions";
+import { getLikesByReportId, isLiked, likeReport } from "../../api/likes/actions";
+import { getUserById } from "../../api/users/actions";
 import { Metadata } from "next";
 import Link from "next/link";
 import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
 
 type Props = {
     params: {
@@ -37,7 +38,14 @@ export default async function Report({ params: { id } }: Props) {
     const report = await getReportById(id);
     const user = await getUserById(report?.userId);
     const { likes, count } = await getLikesByReportId(report?.id);
-    
+
+    async function handleLikeClick() {
+        if (session && report && !await isLiked(report.id, session.user.id)) {
+            await likeReport(report.id, session.user.id);
+            redirect(`/reports/${report.id}`);
+        }
+    }
+
     return (
         <>
             <div className="report-page">
@@ -52,15 +60,18 @@ export default async function Report({ params: { id } }: Props) {
                             Author: <Link href={`/users/${user?.id}`}> {user?.login} </Link>
                         </div>
                         <div className="report-data-block">
-                        <a className="like">&#9829;</a> {count}
+                            <form action={handleLikeClick} method="post">
+                                <button type="submit" className="like" disabled={await isLiked(report.id, session?.user.id)}>
+                                    &#9829; {count}
+                                </button>
+                            </form>
                         </div>
                     </div>
                     {report?.userId === user?.id ?
-                        <form action={removeReport.bind(null, id)}>
+                        <form action={removeReport.bind(null, id)} method="post">
                             <input type="submit" className="button-main" value="delete report" />
                         </form> : ""
                     }
-
                 </div>
             </div>
             <pre>{session ? '' : 'Loading session...'}</pre>
